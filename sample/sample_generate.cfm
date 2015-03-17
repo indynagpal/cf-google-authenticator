@@ -28,8 +28,9 @@ THE SOFTWARE.
     </cfscript>
 </cfif>
 <form action="" method="POST">
-    <label for="email">Email: <input type="text" name="email" id="email" /></label>
-    <label for="password">Password: <input type="password" name="password" id="password" /></label>
+    <label for="email">User Email: <input type="text" name="email" id="email" /></label>
+    <label for="password">User Password: <input type="password" name="password" id="password" /></label>
+    <label for="password">Name of Issuer: <input type="text" name="issuer" id="issuer" /></label>
     <input type="submit" value="Generate" />
 </form>
 
@@ -37,7 +38,7 @@ THE SOFTWARE.
     <cfoutput><p>Your secret key is: #key#</p></cfoutput>
     <div id="qrcode"></div>
     <script src="qrcode.min.js"></script>
-    <cfoutput><script>new QRCode(document.getElementById('qrcode'), '#jsstringformat(auth.getOTPURL(form.email, key))#');</script></cfoutput>
+    <cfoutput><script>new QRCode(document.getElementById('qrcode'), '#jsstringformat(auth.getOTPURL(form.email, key, form.issuer))#');</script></cfoutput>
     <p><a href="sample_check.cfm?secret=<cfoutput>#key#</cfoutput>">Check token</p>
     <p><a href="sample_verify.cfm?secret=<cfoutput>#key#</cfoutput>">Verify token</p>
 </cfif>
